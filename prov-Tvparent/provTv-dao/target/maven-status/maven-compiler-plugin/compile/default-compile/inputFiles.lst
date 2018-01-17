@@ -1,0 +1,16 @@
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/tvMsg/TvMsgMapper.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/brand/BrandMapper.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/province/ProvinceMapper.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/tv/TvMapper.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/category/CategoryMapper.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/searchDto/TvSearchParam.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/insertDto/ReceiveTotalServerTvInformationParam.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/tv/TvAreaMapper.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/tvMacBinding/TvMacBindingMapper.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/insertDto/TvInsertParam.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/user/UserMapper.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/bindingPlaces/BindingPlacesMapper.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/city/CityMapper.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/area/AreaMapper.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/platform/PlatformMapper.java
+/Users/hh/iptv/iptvCode/prov-Tvparent/provTv-dao/src/main/java/com/iptv/dao/tv/TvBaseMapper.java

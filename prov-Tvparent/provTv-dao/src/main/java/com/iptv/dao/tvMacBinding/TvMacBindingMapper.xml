@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iptv.dao.tvMacBinding.TvMacBindingMapper">
+
+    <resultMap id="BaseResultMap" type="com.iptv.model.tvMacBinding.entity.TvMacBinding">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="mac" jdbcType="VARCHAR" property="mac" />
+        <result column="account_number" jdbcType="VARCHAR" property="accountNumber" />
+        <result column="prov_id" jdbcType="INTEGER" property="provId" />
+        <result column="ip_address" jdbcType="VARCHAR" property="ipAddress" />
+        <result column="batch_number" jdbcType="INTEGER" property="batchNumber" />
+        <result column="number" jdbcType="INTEGER" property="number" />
+        <result column="is_reusing" jdbcType="TINYINT" property="isReusing" />
+        <result column="state" jdbcType="TINYINT" property="state" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, mac, account_number, prov_id, ip_address, batch_number, number, is_reusing, state,
+        update_time, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tv_mac_binding
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByMacIpProvId" resultType="com.iptv.model.tvMacBinding.entity.TvMacBinding">
+
+        select
+        <include refid="Base_Column_List" />
+        from tv_mac_binding
+        where mac = #{mac} and account_number=#{accountNumber} and prov_id=#{provId}
+          and state = #{state}
+
+    </select>
+
+    <select id="selectByProvIdState" resultType="com.iptv.model.tvMacBinding.entity.TvMacBinding">
+        select mac,
+        number,
+        batch_number as batchNumber from tv_mac_binding
+        where prov_id = #{provId}
+        and state= 3 or state = 4
+        and is_reusing= 1
+        order by create_time ASc
+        limit 0,1
+    </select>
+    <select id="selectByProvIdStateUnUsed" resultType="com.iptv.model.tvMacBinding.entity.TvMacBinding">
+        select * from tv_mac_binding
+            where prov_id = #{provId}
+            and state= 1 or state = 2
+            and is_reusing= 1
+            order by create_time desc
+            limit 0,1
+
+
+    </select>
+
+    <select id="selectOldByProvIdStateNumber" resultType="com.iptv.model.tvMacBinding.entity.TvMacBinding">
+
+        select * from tv_mac_binding
+            where prov_id = #{provId}
+            and state= 3 or state = 4
+            and is_reusing= 1
+            and batch_number=#{batchNumber}
+	        and number = #{number}
+            order by id desc
+            limit 0,1
+
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+        delete from tv_mac_binding
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.iptv.model.tvMacBinding.entity.TvMacBinding">
+        insert into tv_mac_binding (id, mac, account_number,
+        prov_id, ip_address, batch_number,
+        number, is_reusing, state,
+        update_time, create_time)
+        values (#{id,jdbcType=INTEGER}, #{mac,jdbcType=VARCHAR}, #{accountNumber,jdbcType=VARCHAR},
+        #{provId,jdbcType=INTEGER}, #{ipAddress,jdbcType=VARCHAR}, #{batchNumber,jdbcType=INTEGER},
+        #{number,jdbcType=INTEGER}, #{isReusing,jdbcType=TINYINT}, #{state,jdbcType=TINYINT},
+        #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.iptv.model.tvMacBinding.entity.TvMacBinding">
+        insert into tv_mac_binding
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="mac != null">
+                mac,
+            </if>
+            <if test="accountNumber != null">
+                account_number,
+            </if>
+            <if test="provId != null">
+                prov_id,
+            </if>
+            <if test="ipAddress != null">
+                ip_address,
+            </if>
+            <if test="batchNumber != null">
+                batch_number,
+            </if>
+            <if test="number != null">
+                number,
+            </if>
+            <if test="isReusing != null">
+                is_reusing,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="mac != null">
+                #{mac,jdbcType=VARCHAR},
+            </if>
+            <if test="accountNumber != null">
+                #{accountNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="provId != null">
+                #{provId,jdbcType=INTEGER},
+            </if>
+            <if test="ipAddress != null">
+                #{ipAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="batchNumber != null">
+                #{batchNumber,jdbcType=INTEGER},
+            </if>
+            <if test="number != null">
+                #{number,jdbcType=INTEGER},
+            </if>
+            <if test="isReusing != null">
+                #{isReusing,jdbcType=TINYINT},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=TINYINT},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.iptv.model.tvMacBinding.entity.TvMacBinding">
+        update tv_mac_binding
+        <set>
+            <if test="mac != null">
+                mac = #{mac,jdbcType=VARCHAR},
+            </if>
+            <if test="accountNumber != null">
+                account_number = #{accountNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="provId != null">
+                prov_id = #{provId,jdbcType=INTEGER},
+            </if>
+            <if test="ipAddress != null">
+                ip_address = #{ipAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="batchNumber != null">
+                batch_number = #{batchNumber,jdbcType=INTEGER},
+            </if>
+            <if test="number != null">
+                number = #{number,jdbcType=INTEGER},
+            </if>
+            <if test="isReusing != null">
+                is_reusing = #{isReusing,jdbcType=TINYINT},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=TINYINT},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.iptv.model.tvMacBinding.entity.TvMacBinding">
+        update tv_mac_binding
+        set mac = #{mac,jdbcType=VARCHAR},
+        account_number = #{accountNumber,jdbcType=VARCHAR},
+        prov_id = #{provId,jdbcType=INTEGER},
+        ip_address = #{ipAddress,jdbcType=VARCHAR},
+        batch_number = #{batchNumber,jdbcType=INTEGER},
+        number = #{number,jdbcType=INTEGER},
+        is_reusing = #{isReusing,jdbcType=TINYINT},
+        state = #{state,jdbcType=TINYINT},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

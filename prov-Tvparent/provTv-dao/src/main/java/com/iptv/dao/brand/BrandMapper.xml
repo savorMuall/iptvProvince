@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iptv.dao.brand.BrandMapper">
+
+	<resultMap id="BaseResultMap" type="com.iptv.model.brand.entity.Brand">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="model" property="model" jdbcType="VARCHAR" />
+		<result column="chip" property="chip" jdbcType="VARCHAR" />
+		<result column="android_version" property="androidVersion"
+			jdbcType="VARCHAR" />
+		<result column="rom_memory" property="romMemory" jdbcType="VARCHAR" />
+		<result column="fre_quency" property="freQuency" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,name,model,chip,android_version,rom_memory,fre_quency,number,create_time,update_time
+	</sql>
+
+	<select id="findAll" resultMap="BaseResultMap" parameterType="com.iptv.model.brand.entity.Brand">
+		select
+		<include refid="Base_Column_List" />
+		from brand where 1=1
+		<if test="id!=null and id!=0">AND id=#{id}</if>
+		<if test="name!=null">AND name=#{name}</if>
+		<if test="model!=null">AND model=#{model}</if>
+		<if test="chip!=null">AND chip=#{chip}</if>
+		<if test="androidVersion!=null">AND android_version=#{androidVersion}</if>
+		<if test="romMemory!=null">AND rom_memory=#{romMemory}</if>
+		<if test="freQuency!=null">AND fre_quency=#{freQuency}</if>
+		<if test="number!=null">AND device_type=#{number}</if>
+		<if test="createTime!=null">AND create_time=#{createTime}</if>
+		<if test="updateTime!=null">AND update_time=#{updateTime}</if>
+	</select>
+
+	<select id="selectBrandAllFy" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from brand
+		ORDER BY create_time desc
+		limit #{startNumber},#{endNumber}
+	</select>
+
+	<insert id="insert" parameterType="com.iptv.model.brand.entity.Brand">
+		insert into brand
+		(name,model,chip,android_version,rom_memory,fre_quency,number,create_time,update_time
+		)
+		values (#{#{name,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR},
+		#{chip,jdbcType=VARCHAR},#{androidVersion,jdbcType=VARCHAR},
+		#{romMemory,jdbcType=VARCHAR},#{freQuency,jdbcType=VARCHAR},#{number,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+
+</mapper>

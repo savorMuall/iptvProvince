@@ -1,0 +1,8 @@
+com/iptv/controller/api/IptvBindingController.class
+com/iptv/controller/dto/ActivationParam.class
+com/iptv/controller/api/IptvApiController.class
+com/iptv/controller/interceptor/DefaultInterceptor.class
+com/iptv/controller/util/ServiceCode.class
+com/iptv/controller/dto/ActivationParam$ActivationParamBuilder.class
+com/iptv/controller/Application.class
+com/iptv/controller/util/AesUtils.class

@@ -1,0 +1,16 @@
+com/iptv/dao/city/CityMapper.class
+com/iptv/dao/insertDto/TvInsertParam.class
+com/iptv/dao/category/CategoryMapper.class
+com/iptv/dao/insertDto/ReceiveTotalServerTvInformationParam.class
+com/iptv/dao/province/ProvinceMapper.class
+com/iptv/dao/tv/TvAreaMapper.class
+com/iptv/dao/tv/TvMapper.class
+com/iptv/dao/user/UserMapper.class
+com/iptv/dao/bindingPlaces/BindingPlacesMapper.class
+com/iptv/dao/area/AreaMapper.class
+com/iptv/dao/tv/TvBaseMapper.class
+com/iptv/dao/tvMsg/TvMsgMapper.class
+com/iptv/dao/searchDto/TvSearchParam.class
+com/iptv/dao/platform/PlatformMapper.class
+com/iptv/dao/tvMacBinding/TvMacBindingMapper.class
+com/iptv/dao/brand/BrandMapper.class

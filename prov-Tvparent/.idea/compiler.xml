@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="provTv-app" />
+        <module name="provTv-common" />
+        <module name="provTv-dao" />
+        <module name="provTv-model" />
+        <module name="provTv-service" />
+        <module name="provTv-util" />
+        <module name="provTv-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="prov-Tvparent" target="1.8" />
+      <module name="provTv-app" target="1.8" />
+      <module name="provTv-common" target="1.8" />
+      <module name="provTv-dao" target="1.8" />
+      <module name="provTv-model" target="1.8" />
+      <module name="provTv-service" target="1.8" />
+      <module name="provTv-util" target="1.8" />
+      <module name="provTv-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

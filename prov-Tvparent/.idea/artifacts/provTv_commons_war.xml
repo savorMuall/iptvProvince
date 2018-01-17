@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="provTv-commons:war">
+    <output-path>$PROJECT_DIR$/provTv-commons/target</output-path>
+    <root id="archive" name="provTv-commons.war">
+      <element id="artifact" artifact-name="provTv-commons:war exploded" />
+    </root>
+  </artifact>
+</component>

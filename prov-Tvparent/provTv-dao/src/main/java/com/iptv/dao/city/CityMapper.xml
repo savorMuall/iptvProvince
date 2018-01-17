@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iptv.dao.city.CityMapper">
+
+	<resultMap id="BaseResultMap" type="com.iptv.model.city.entity.City">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="city_id" property="cityId" jdbcType="INTEGER" />
+		<result column="city_name" property="cityName" jdbcType="VARCHAR" />
+		<result column="city_py" property="cityPy" jdbcType="VARCHAR" />
+		<result column="prov_id" property="provId" jdbcType="INTEGER" />
+		<result column="city_state" property="cityState" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,city_id,city_name,city_py,prov_id,city_state
+	</sql>
+
+	<select id="findAll" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from city
+		where prov_id = #{provId,jdbcType=INTEGER}
+	</select>
+
+    <select id="getAllCity" resultType="com.iptv.model.city.entity.City">
+		select
+		<include refid="Base_Column_List" />
+		from city
+	</select>
+
+</mapper>

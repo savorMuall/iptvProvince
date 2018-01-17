@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iptv.dao.tv.TvMapper">
+
+	<resultMap id="BaseResultMap" type="com.iptv.model.tv.entity.Tv">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="brand_id" property="brandId" jdbcType="INTEGER" />
+		<result column="mac" property="mac" jdbcType="VARCHAR" />
+		<result column="city_id" property="cityId" jdbcType="INTEGER" />
+		<result column="platform" property="platform" jdbcType="VARCHAR" />
+		<result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+		<result column="device_name" property="deviceName" jdbcType="VARCHAR" />
+		<result column="device_type" property="deviceType" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="INTEGER" />
+		<result column="upgrade_server_address" property="upgradeServerAddress"
+			jdbcType="VARCHAR" />
+		<result column="sound_server_address" property="soundServerAddress"
+			jdbcType="VARCHAR" />
+		<result column="apk" property="apk" jdbcType="VARCHAR" />
+		<result column="rom" property="rom" jdbcType="VARCHAR" />
+		<result column="player_version" property="playerVersion"
+			jdbcType="VARCHAR" />
+		<result column="browser_version" property="browserVersion"
+			jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="TINYINT" />
+		<result column="user" property="user" jdbcType="VARCHAR" />
+		<result column="pass" property="pass" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+		<result column="prov_name" property="provName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		t.id,t.brand_id,t.mac,t.city_id,t.platform,t.device_id,t.device_name,t.device_type,t.number,
+		t.apk,t.rom,t.player_version,t.browser_version,t.state,t.user,t.pass,t.create_time,t.update_time
+	</sql>
+
+	<select id="findAll" resultMap="BaseResultMap" parameterType="com.iptv.model.tv.entity.Tv">
+		select
+		<include refid="Base_Column_List" />,
+		psa.prov_name ,psa.upgrade_server_address,psa.sound_server_address
+		from tv t left join brand b on t.brand_id = b.id 
+				  left join prov_server_address psa on psa.prov_id = t.prov_id  where 1=1
+		<if test="id!=null and id!=0">AND t.id=#{id}</if>
+		<if test="brandId!=null and brandId!=0">AND t.brand_id=#{brandId}</if>
+		<if test="mac!=null">AND t.mac=#{mac}</if>
+		<if test="cityId!=null and cityId!=0">AND t.city_id=#{cityId}</if>
+		<if test="platform!=null">AND t.platform=#{platform}</if>
+		<if test="deviceId!=null">AND t.device_id=#{deviceId}</if>
+		<if test="deviceName!=null">AND t.device_name=#{deviceName}</if>
+		<if test="deviceType!=null">AND t.device_type=#{deviceType}</if>
+		<if test="number!=null and number!=0">AND t.number=#{number}</if>
+		<if test="upgradeServerAddress!=null">AND psa.upgrade_server_address=#{upgradeServerAddress}</if>
+		<if test="soundServerAddress!=null">AND psa.sound_server_address=#{soundServerAddress}</if>
+		<if test="apk!=null">AND t.apk=#{apk}</if>
+		<if test="rom!=null">AND t.rom=#{rom}</if>
+		<if test="playerVersion!=null">AND t.player_version=#{playerVersion}</if>
+		<if test="browserVersion!=null">AND t.browser_version=#{browserVersion}</if>
+		<if test="state!=null  and state!=0">AND t.state=#{state}</if>
+		<if test="user!=null">AND t.user=#{user}</if>
+		<if test="pass!=null">AND t.pass=#{pass}</if>
+		<if test="createTime!=null">AND t.create_time=#{createTime}</if>
+		<if test="updateTime!=null">AND t.update_time=#{updateTime}</if>
+	</select>
+	
+	   <select id="selectTvAllFy" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    ,b.name as brand_name,psa.prov_name ,psa.upgrade_server_address,psa.sound_server_address
+		from tv t left join brand b on t.brand_id = b.id 
+				  left join prov_server_address psa on psa.prov_id = t.prov_id  where 1=1
+      ORDER BY t.create_time desc,t.id desc
+      limit #{startNumber},#{endNumber}
+  </select>
+	
+
+	<insert id="insert" parameterType="com.iptv.model.tv.entity.Tv">
+		insert into tv
+			(brand_id,mac,city_id,platform,device_id,device_name,device_type,number,
+			apk,rom,player_version,browser_version,state,user,pass,create_time,update_time
+			)
+		values (#{brandId,jdbcType=INTEGER}, #{mac,jdbcType=VARCHAR},
+				#{cityId,jdbcType=INTEGER},
+				#{platform,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR},
+				#{deviceType,jdbcType=VARCHAR},#{number,jdbcType=INTEGER},#{apk,jdbcType=VARCHAR},#{rom,jdbcType=VARCHAR},
+				#{playerVersion,jdbcType=VARCHAR},#{browserVersion,jdbcType=VARCHAR},#{state,jdbcType=TINYINT},
+				#{user,jdbcType=VARCHAR},#{pass,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP}
+				)
+	</insert>
+
+  <update id="update" parameterType="com.iptv.model.tv.entity.Tv" >
+    update tv
+    set prov_id = #{provId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

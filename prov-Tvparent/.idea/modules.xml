@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/prov-Tvparent.iml" filepath="$PROJECT_DIR$/prov-Tvparent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/provTv-app/provTv-app.iml" filepath="$PROJECT_DIR$/provTv-app/provTv-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/provTv-common/provTv-common.iml" filepath="$PROJECT_DIR$/provTv-common/provTv-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/provTv-dao/provTv-dao.iml" filepath="$PROJECT_DIR$/provTv-dao/provTv-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/provTv-model/provTv-model.iml" filepath="$PROJECT_DIR$/provTv-model/provTv-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/provTv-service/provTv-service.iml" filepath="$PROJECT_DIR$/provTv-service/provTv-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/provTv-util/provTv-util.iml" filepath="$PROJECT_DIR$/provTv-util/provTv-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/provTv-web/provTv-web.iml" filepath="$PROJECT_DIR$/provTv-web/provTv-web.iml" />
+    </modules>
+  </component>
+</project>

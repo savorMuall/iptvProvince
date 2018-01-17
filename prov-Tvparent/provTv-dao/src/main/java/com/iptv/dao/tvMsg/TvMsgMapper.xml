@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iptv.dao.tvMsg.TvMsgMapper">
+
+	<resultMap id="BaseResultMap" type="com.iptv.model.tvMsg.entity.TvMsg">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="deviceId" property="deviceId" jdbcType="VARCHAR" />
+		<result column="deviceName" property="deviceName" jdbcType="VARCHAR" />
+		<result column="deviceType" property="deviceType" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="INTEGER" />
+		<result column="operateSystem" property="operateSystem" jdbcType="VARCHAR" />
+		<result column="tvModel" property="tvModel" jdbcType="VARCHAR" />
+		<result column="areaId" property="areaId" jdbcType="INTEGER" />
+		<result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id as id,device_id as deviceId,device_name as deviceName,device_type as
+		deviceType,number as number,operate_system as operateSystem,
+		tv_model as tvModel,area_id as areaId,create_time as createTime,update_time as
+		updateTime
+	</sql>
+
+	<select id="findAll" resultMap="BaseResultMap" parameterType="com.iptv.model.tvMsg.entity.TvMsg">
+		select
+			<include refid="Base_Column_List" />
+		from tv_msg where 1=1
+			<if test="id!=null and id!=0">AND id=#{id}</if>
+			<if test="deviceId!=null">AND device_id=#{deviceId}</if>
+			<if test="deviceName!=null">AND device_name=#{deviceName}</if>
+			<if test="deviceType!=null">AND device_type=#{deviceType}</if>
+			<if test="number!=null and number!=0" >AND number=#{number}</if>
+			<if test="operateSystem!=null">AND operate_system=#{operateSystem}</if>
+			<if test="tvModel!=null">AND tv_model=#{tvModel}</if>
+			<if test="areaId!=null and areaId!=0">AND area_id=#{areaId}</if>
+			<if test="createTime!=null">AND create_time=#{createTime}</if>
+			<if test="updateTime!=null">AND update_time=#{updateTime}</if>
+
+	</select>
+
+	<select id="find" resultType="com.iptv.model.tvMsg.entity.TvMsg" parameterType="com.iptv.model.tvMsg.entity.TvMsg">
+		select
+			<include refid="Base_Column_List" />
+		from tv_msg where 1=1
+			<if test="id!=null">AND id=#{id}</if>
+			<if test="deviceId!=null">AND deviceId=#{deviceId}</if>
+			<if test="deviceName!=null">AND deviceName=#{deviceName}</if>
+			<if test="deviceType!=null">AND deviceType=#{deviceType}</if>
+			<if test="number!=null">AND number=#{number}</if>
+			<if test="operateSystem!=null">AND operateSystem=#{operateSystem}</if>
+			<if test="tvModel!=null">AND tvModel=#{tvModel}</if>
+			<if test="areaId!=null">AND areaId=#{areaId}</if>
+			<if test="createTime!=null">AND createTime=#{createTime}</if>
+			<if test="updateTime!=null">AND updateTime=#{updateTime}</if>
+	</select>
+
+</mapper>
